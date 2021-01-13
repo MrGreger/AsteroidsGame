@@ -10,4 +10,5 @@ public class AsteroidSettings : ScriptableObject
     public float Speed;
     public Asteroid Prefab;
     public List<AsteroidSettings> AfterDeathAsteroids;
+    public int ScoreReward;
 }

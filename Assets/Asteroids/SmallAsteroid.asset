@@ -16,3 +16,4 @@ MonoBehaviour:
   Speed: 1.2
   Prefab: {fileID: 2016547538611103537, guid: 0f1af29449d28de4a98a143fc5359a30, type: 3}
   AfterDeathAsteroids: []
+  ScoreReward: 25

@@ -18,3 +18,4 @@ MonoBehaviour:
   AfterDeathAsteroids:
   - {fileID: 11400000, guid: debc7c5cf0936e147a1c1632ac458d68, type: 2}
   - {fileID: 11400000, guid: debc7c5cf0936e147a1c1632ac458d68, type: 2}
+  ScoreReward: 5

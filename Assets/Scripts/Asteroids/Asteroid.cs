@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject
+public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 {
     [SerializeField]
     private Rigidbody2D _rigidbody;
@@ -17,6 +18,8 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject
     public Rigidbody2D Rigidbody => _rigidbody;
     public Bounds Bounds => _collider.bounds;
 
+    public int ScoreReward { get; private set; }
+
     private int _healthPoints;
     private float _speed;
 
@@ -27,6 +30,7 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject
         _healthPoints = asteroid.HealthPoints;
         _speed = asteroid.Speed;
         _afterDeathAsteroids = asteroid.AfterDeathAsteroids;
+        ScoreReward = asteroid.ScoreReward;
     }
 
     public void OnCollided(Bullet bullet)
@@ -74,6 +78,9 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject
 
     private void OnDead()
     {
+
+        MessageBroker.Default.Publish(new OnEnemyDieEvent(this));
+
         if (_afterDeathAsteroids == null || !_afterDeathAsteroids.Any())
         {
             Destroy(gameObject);

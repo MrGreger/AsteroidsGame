@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f29d465d135f0b439e20d34a270818a, type: 2}
   - {fileID: 11400000, guid: 0f29d465d135f0b439e20d34a270818a, type: 2}
   - {fileID: 11400000, guid: 0f29d465d135f0b439e20d34a270818a, type: 2}
+  ScoreReward: 10
