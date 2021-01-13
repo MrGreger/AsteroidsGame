@@ -39,9 +39,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent<IDamagable>(out var damagable))
+        if(collision.gameObject.TryGetComponent<ICollidable>(out var damagable))
         {
-            damagable.OnHit(this);
+            damagable.OnCollided(this);
             Destroy(gameObject);
         }
     }

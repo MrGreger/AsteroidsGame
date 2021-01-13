@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerShip : SpaceShip, IDamagable
+public class PlayerShip : SpaceShip, ICollidable
 {
     public UnityEvent PlayerDied;
     private PlayerActions _playerInput;
@@ -25,7 +25,7 @@ public class PlayerShip : SpaceShip, IDamagable
         _gun.Shoot();
     }
 
-    public void OnHit(Bullet bullet)
+    public void OnCollided(Bullet bullet)
     {
         PlayerDied?.Invoke();
     }
@@ -33,5 +33,15 @@ public class PlayerShip : SpaceShip, IDamagable
     public void OnPlayerDied()
     {
         Debug.Log("I'm died!");
+    }
+
+    public void OnCollided(Asteroid asteroid)
+    {
+        OnPlayerDied();
+    }
+
+    public void OnCollided(SpaceShip spaceShip)
+    {
+        throw new System.NotImplementedException();
     }
 }

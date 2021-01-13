@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c90aa752eec9164cad18097974cc122, type: 3}
+  m_Name: BiggestAsteroid
+  m_EditorClassIdentifier: 
+  HealthPoints: 2
+  Speed: 0.5
+  Prefab: {fileID: 4092444638036723332, guid: 82a164ead189b3548bd9b2329c38bfec, type: 3}
+  AfterDeathAsteroids:
+  - {fileID: 11400000, guid: debc7c5cf0936e147a1c1632ac458d68, type: 2}
+  - {fileID: 11400000, guid: debc7c5cf0936e147a1c1632ac458d68, type: 2}
