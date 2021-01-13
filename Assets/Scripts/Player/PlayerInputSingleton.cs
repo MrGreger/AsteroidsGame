@@ -2,25 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputSingleton : Singleton<PlayerInputSingleton>
 {
     public PlayerActions PlayerInputController { get; private set; }
 
-    public static PlayerInput Instance { get; private set; } = null;
+    protected PlayerInputSingleton() { }
 
-    public void Awake()
+    private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            PlayerInputController = new PlayerActions();
-        }
-        else if (Instance == this)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
+        PlayerInputController = new PlayerActions();
     }
 
     private void OnEnable()

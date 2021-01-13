@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput = PlayerInput.Instance.PlayerInputController;
+        _playerInput = PlayerInputSingleton.Instance.PlayerInputController;
 
         _playerInput.PlayerShip.Move.performed += ctx => StartAccelerating();
         _playerInput.PlayerShip.Move.canceled += ctx => StopAccelerating();
