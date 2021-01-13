@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 public class AsteroidGenerator : MonoBehaviour
@@ -17,10 +18,14 @@ public class AsteroidGenerator : MonoBehaviour
 
     public void Start()
     {
-        InvokeRepeating(nameof(GenerateAsteroid), 0.2f, 8);
+        InvokeRepeating(nameof(GenerateRandomAsteroid), 0.2f, 10000);
+
+        MessageBroker.Default.Receive<OnAsteroidBreakEvent>()
+                             .Subscribe(x => GenerateAsteroids(x.BreakPosition, x.Fragments))
+                             .AddTo(this);
     }
 
-    public void GenerateAsteroid()
+    public void GenerateRandomAsteroid()
     {
         if (_asteroidVariants == null || !_asteroidVariants.Any())
         {
@@ -29,6 +34,28 @@ public class AsteroidGenerator : MonoBehaviour
         }
 
         StartCoroutine(SpawnAsteroid());
+    }
+
+    public void GenerateAsteroids(Vector3 spawnpoint, IEnumerable<AsteroidSettings> asteroids)
+    {
+        foreach (var asteroidSetting in asteroids)
+        {
+            var asteroid = AsteroidFactory.Instance.CreateAsteroid(asteroidSetting);
+            var asteroidPosition = (Random.insideUnitCircle * 1.4f) + new Vector2(spawnpoint.x, spawnpoint.y);
+
+            asteroidPosition = ClampPositionToGameArea(asteroidPosition);
+
+            asteroid.InitializeAsteroid(asteroidPosition);
+        }
+    }
+
+    private Vector2 ClampPositionToGameArea(Vector2 asteroidPosition)
+    {
+        var relativeAsteroidPosition = _gameArea.transform.InverseTransformPoint(asteroidPosition);
+        relativeAsteroidPosition.x = Mathf.Clamp(relativeAsteroidPosition.x, -0.49f, 0.49f);
+        relativeAsteroidPosition.y = Mathf.Clamp(relativeAsteroidPosition.y, -0.49f, 0.49f);
+        asteroidPosition = _gameArea.transform.TransformPoint(relativeAsteroidPosition);
+        return asteroidPosition;
     }
 
     private IEnumerator SpawnAsteroid()

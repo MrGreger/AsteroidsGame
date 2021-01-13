@@ -66,12 +66,7 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
             return;
         }
 
-        foreach (var asteroidSetting in _afterDeathAsteroids)
-        {
-            var asteroid = AsteroidFactory.Instance.CreateAsteroid(asteroidSetting);
-            var asteroidPosition = (Random.insideUnitCircle * 1.4f) + new Vector2(transform.position.x, transform.position.y);
-            asteroid.InitializeAsteroid(asteroidPosition);
-        }
+        MessageBroker.Default.Publish(new OnAsteroidBreakEvent(_afterDeathAsteroids, transform.position));
 
         Destroy(gameObject);
     }

@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerShip: {fileID: 8035665158087845341}
+  _avoidDistance: 3
 --- !u!1 &1284861019
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7058418688318992445, guid: 5c37243eb4628a144b024ef216140bf1,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8035665156618684616, guid: 5c37243eb4628a144b024ef216140bf1,
         type: 3}
