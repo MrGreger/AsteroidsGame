@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: da86b6aaad032ff4c8ed374fb292c163,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -132,7 +135,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -148,18 +150,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795c2b66d6ababf4dad6f366d029c78f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -217,6 +207,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1097899272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8035665158272178455, guid: 5c37243eb4628a144b024ef216140bf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8035665158087845340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1097899273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097899272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186950a2324da440bd48f2cc254b2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8035665158087845340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +232,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8035665156618684617, guid: 5c37243eb4628a144b024ef216140bf1,
+        type: 3}
+      propertyPath: _shooter
+      value: 
+      objectReference: {fileID: 8035665158087845341}
     - target: {fileID: 8035665158272178448, guid: 5c37243eb4628a144b024ef216140bf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,3 +299,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c37243eb4628a144b024ef216140bf1, type: 3}
+--- !u!114 &8035665158087845341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8035665158272178451, guid: 5c37243eb4628a144b024ef216140bf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8035665158087845340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097899272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1670b29828533c64f960e31baa588795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
