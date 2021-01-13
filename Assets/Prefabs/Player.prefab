@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 8035665156618684617}
+  _collider: {fileID: 7058418688318992445}
   PlayerDied:
     m_PersistentCalls:
       m_Calls: []

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class GameArea : MonoBehaviour
+public class GameArea : MonoBehaviour, IBoundedObject
 {
     [SerializeField]
     private BoxCollider2D _screenBoundsCollider;
 
     private float _lastCameraAspect;
+
+    public Bounds Bounds => _screenBoundsCollider.bounds;
 
     private void Update()
     {

@@ -5,16 +5,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class Asteroid : MonoBehaviour, ICollidable
+public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject
 {
     [SerializeField]
     private Rigidbody2D _rigidbody;
+    [SerializeField]
+    private Collider2D _collider;
+    [SerializeField]
+    private List<AsteroidSettings> _afterDeathAsteroids;
+
     public Rigidbody2D Rigidbody => _rigidbody;
+    public Bounds Bounds => _collider.bounds;
 
     private int _healthPoints;
     private float _speed;
-    [SerializeField]
-    private List<AsteroidSettings> _afterDeathAsteroids;
 
     private Vector2? _direction;
 

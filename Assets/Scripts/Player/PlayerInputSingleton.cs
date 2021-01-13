@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PlayerInputSingleton : Singleton<PlayerInputSingleton>
 {
-    public PlayerActions PlayerInputController { get; private set; }
+    private PlayerActions _playerInputController;
+
+    public PlayerActions PlayerInputController
+    {
+        get
+        {
+            if(_playerInputController == null)
+            {
+                _playerInputController = new PlayerActions();
+            }
+
+            return _playerInputController;
+        }
+    }
 
     protected PlayerInputSingleton() { }
-
-    private void Awake()
-    {
-        PlayerInputController = new PlayerActions();
-    }
 
     private void OnEnable()
     {
