@@ -22,4 +22,14 @@ public class PlayerInput : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+
+    private void OnEnable()
+    {
+        PlayerInputController.Enable();
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputController.Enable();
+    }
 }
