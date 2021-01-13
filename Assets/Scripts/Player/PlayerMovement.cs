@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerActions _playerInput;
+    private PlayerActions _playerInput => PlayerInputSingleton.Instance.PlayerInputController;
 
     [SerializeField]
     private Rigidbody2D _rigidbody;
@@ -74,10 +74,8 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, _accelerationDirection * _currentAcceleration, Time.deltaTime * _slowDownSpeed);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        _playerInput = PlayerInputSingleton.Instance.PlayerInputController;
-
         _playerInput.PlayerShip.Move.performed += ctx => StartAccelerating();
         _playerInput.PlayerShip.Move.canceled += ctx => StopAccelerating();
     }

@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerShip : SpaceShip, ICollidable
 {
     public UnityEvent PlayerDied;
-    private PlayerActions _playerInput;
+    private PlayerActions _playerInput => PlayerInputSingleton.Instance.PlayerInputController;
 
     private void OnEnable()
     {
-        _playerInput = PlayerInputSingleton.Instance.PlayerInputController;
-
         _playerInput.PlayerShip.Shoot.performed += ctx => OnShoot();
     }
 
@@ -33,6 +32,7 @@ public class PlayerShip : SpaceShip, ICollidable
     public void OnPlayerDied()
     {
         Debug.Log("I'm died!");
+        MessageBroker.Default.Publish(new OnPlayerDiedEvent());
     }
 
     public void OnCollided(Asteroid asteroid)

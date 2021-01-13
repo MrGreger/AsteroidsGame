@@ -28,6 +28,6 @@ public class PlayerInputSingleton : Singleton<PlayerInputSingleton>
 
     private void OnDisable()
     {
-        PlayerInputController.Enable();
+        PlayerInputController.Disable();
     }
 }

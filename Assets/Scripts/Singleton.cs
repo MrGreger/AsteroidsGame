@@ -55,8 +55,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     }
 
 
-    private void OnDestroy()
-    {
-        m_ShuttingDown = true;
-    }
+    //private void OnDestroy()
+    //{
+    //    m_ShuttingDown = true;
+    //}
 }
