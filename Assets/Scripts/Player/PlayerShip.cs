@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerShip : SpaceShip, ICollidable
 {
     public UnityEvent PlayerDied;
-    private PlayerActions _playerInput => PlayerInputSingleton.Instance.PlayerInputController;
+    private PlayerActions _playerInput => PlayerInputSingleton.Instance?.PlayerInputController;
 
     private void OnEnable()
     {
@@ -16,7 +16,10 @@ public class PlayerShip : SpaceShip, ICollidable
 
     private void OnDisable()
     {
-        _playerInput.PlayerShip.Shoot.performed -= ctx => OnShoot();
+        if (_playerInput != null)
+        {
+            _playerInput.PlayerShip.Shoot.performed -= ctx => OnShoot();
+        }
     }
 
     private void OnShoot()
@@ -31,7 +34,6 @@ public class PlayerShip : SpaceShip, ICollidable
 
     public void OnPlayerDied()
     {
-        Debug.Log("I'm died!");
         MessageBroker.Default.Publish(new OnPlayerDiedEvent());
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerActions _playerInput => PlayerInputSingleton.Instance.PlayerInputController;
+    private PlayerActions _playerInput => PlayerInputSingleton.Instance?.PlayerInputController;
 
     [SerializeField]
     private Rigidbody2D _rigidbody;
@@ -82,8 +82,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerInput.PlayerShip.Move.performed -= ctx => StartAccelerating();
-        _playerInput.PlayerShip.Move.canceled -= ctx => StopAccelerating();
+        if (_playerInput != null)
+        {
+            _playerInput.PlayerShip.Move.performed -= ctx => StartAccelerating();
+            _playerInput.PlayerShip.Move.canceled -= ctx => StopAccelerating();
+        }
     }
 
     private void StartAccelerating()
