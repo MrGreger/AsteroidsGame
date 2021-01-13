@@ -78,7 +78,7 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 
     public void InitializeAsteroid(Vector3 initialPosition)
     {
-        transform.position = initialPosition
+        transform.position = initialPosition;
         AsteroidMover.SelectRandomDirection();
     }
 
