@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2016547538611103537}
   - component: {fileID: 2016547538611103550}
   - component: {fileID: 2016547538611103551}
+  - component: {fileID: 7949717108970174407}
   m_Layer: 0
   m_Name: SmallAsteroid
   m_TagString: Untagged
@@ -129,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14e8e95fee5af541b41b140c1aba28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 2016547538611103550}
   _collider: {fileID: 2016547538611103551}
   _afterDeathAsteroids: []
+  _asteroidMover: {fileID: 7949717108970174407}
 --- !u!50 &2016547538611103550
 Rigidbody2D:
   serializedVersion: 4
@@ -179,6 +180,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.24829054, y: 0.24704674}
   m_EdgeRadius: 0
+--- !u!114 &7949717108970174407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016547538611103548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3094184abcab94fa6be4e6377d4ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2016547538611103550}
 --- !u!1 &6939831636186269924
 GameObject:
   m_ObjectHideFlags: 0

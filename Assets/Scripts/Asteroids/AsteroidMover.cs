@@ -17,7 +17,7 @@ public class AsteroidMover : MonoBehaviour
     {
         if (_direction == null)
         {
-            _direction = Random.insideUnitCircle.normalized;
+            _direction = AvoidingUserDirectionSelector.Instance.SelectRandomDirection(transform.position);
         }
     }
 

@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 5742061380006687651}
   - component: {fileID: 5742061380006687660}
   - component: {fileID: 5742061380006687661}
+  - component: {fileID: 2497369879511489550}
   m_Layer: 0
   m_Name: MediumAsteroid
   m_TagString: Untagged
@@ -108,9 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14e8e95fee5af541b41b140c1aba28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5742061380006687660}
   _collider: {fileID: 5742061380006687661}
   _afterDeathAsteroids: []
+  _asteroidMover: {fileID: 2497369879511489550}
 --- !u!50 &5742061380006687660
 Rigidbody2D:
   serializedVersion: 4
@@ -158,6 +159,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4965811, y: 0.5118815}
   m_EdgeRadius: 0
+--- !u!114 &2497369879511489550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742061380006687662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3094184abcab94fa6be4e6377d4ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 5742061380006687660}
 --- !u!1 &5742061380294229119
 GameObject:
   m_ObjectHideFlags: 0
