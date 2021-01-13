@@ -6,10 +6,20 @@ public class Gun : MonoBehaviour
 {
     [SerializeField]
     private GameObject _bulletPrefab;
+    [SerializeReference]
+    private SpaceShip _shooter;
+
+    private void Start()
+    {
+        if(_shooter == null)
+        {
+            Debug.LogError("Gun can not be without shooter!");
+        }
+    }
 
     public void Shoot()
     {
-        Instantiate(_bulletPrefab, transform.position, transform.rotation);
-        Debug.Log("Shoot!");
+        var bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
+        bullet.SetOwner(_shooter);
     }
 }

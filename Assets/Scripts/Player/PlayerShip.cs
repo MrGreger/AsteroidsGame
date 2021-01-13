@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerShip : MonoBehaviour
-public class PlayerShip : SpaceShip
+public class PlayerShip : SpaceShip, IDamagable
 {
+    public UnityEvent PlayerDied;
     private PlayerActions _playerInput;
-
-    [SerializeField]
-    private Gun _gun;
 
     private void OnEnable()
     {
@@ -25,5 +23,15 @@ public class PlayerShip : SpaceShip
     private void OnShoot()
     {
         _gun.Shoot();
+    }
+
+    public void OnHit(Bullet bullet)
+    {
+        PlayerDied?.Invoke();
+    }
+
+    public void OnPlayerDied()
+    {
+        Debug.Log("I'm died!");
     }
 }
