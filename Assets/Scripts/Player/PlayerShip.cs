@@ -17,14 +17,11 @@ public class PlayerShip : MonoBehaviour
         }
 
         _playerInput.PlayerShip.Shoot.performed += ctx => OnShoot();
-        _playerInput.Enable();
     }
 
     private void OnDisable()
     {
         _playerInput.PlayerShip.Shoot.performed -= ctx => OnShoot();
-
-        _playerInput.Disable();
     }
 
     private void OnShoot()

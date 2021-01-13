@@ -80,15 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
         _playerInput.PlayerShip.Move.performed += ctx => StartAccelerating();
         _playerInput.PlayerShip.Move.canceled += ctx => StopAccelerating();
-        _playerInput.Enable();
     }
 
     private void OnDisable()
     {
         _playerInput.PlayerShip.Move.performed -= ctx => StartAccelerating();
         _playerInput.PlayerShip.Move.canceled -= ctx => StopAccelerating();
-
-        _playerInput.Disable();
     }
 
     private void StartAccelerating()
