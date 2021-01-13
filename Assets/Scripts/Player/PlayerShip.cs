@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
+public class PlayerShip : SpaceShip
 {
     private PlayerActions _playerInput;
 
@@ -11,10 +12,7 @@ public class PlayerShip : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_playerInput == null)
-        {
-            _playerInput = new PlayerActions();
-        }
+        _playerInput = PlayerInputSingleton.Instance.PlayerInputController;
 
         _playerInput.PlayerShip.Shoot.performed += ctx => OnShoot();
     }
