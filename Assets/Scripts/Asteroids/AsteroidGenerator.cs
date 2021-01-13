@@ -57,8 +57,7 @@ public class AsteroidGenerator : MonoBehaviour
             }
             else
             {
-                asteroid.transform.position = testBounds.center;
-                asteroid.SelectRandomDirection();
+                asteroid.InitializeAsteroid(testBounds.center);
                 break;
             }
 
