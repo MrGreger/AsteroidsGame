@@ -4,31 +4,29 @@ using System.Linq;
 using UniRx;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 {
     [SerializeField]
-    private Rigidbody2D _rigidbody;
-    [SerializeField]
     private Collider2D _collider;
     [SerializeField]
     private List<AsteroidSettings> _afterDeathAsteroids;
+    [SerializeField]
+    private AsteroidMover _asteroidMover;
 
-    public Rigidbody2D Rigidbody => _rigidbody;
+    public AsteroidMover AsteroidMover => _asteroidMover;
     public Bounds Bounds => _collider.bounds;
 
     public int ScoreReward { get; private set; }
 
     private int _healthPoints;
-    private float _speed;
-
-    private Vector2? _direction;
 
     public void ApplySettings(AsteroidSettings asteroid)
     {
         _healthPoints = asteroid.HealthPoints;
-        _speed = asteroid.Speed;
+
+        _asteroidMover.SetSpeed(asteroid.Speed);
+
         _afterDeathAsteroids = asteroid.AfterDeathAsteroids;
         ScoreReward = asteroid.ScoreReward;
     }
@@ -55,30 +53,11 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 
     public void OnCollided(Asteroid asteroid)
     {
-        _rigidbody.velocity = -_rigidbody.velocity;
-        _direction = _rigidbody.velocity;
-    }
-
-    public void SelectRandomDirection()
-    {
-        if (_direction == null)
-        {
-            _direction = Random.insideUnitCircle.normalized;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_direction != null)
-        {
-            _rigidbody.velocity = _direction.Value * _speed;
-            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, _speed);
-        }
+        _asteroidMover.SetOppositeDirection();
     }
 
     private void OnDead()
     {
-
         MessageBroker.Default.Publish(new OnEnemyDieEvent(this));
 
         if (_afterDeathAsteroids == null || !_afterDeathAsteroids.Any())
@@ -91,10 +70,15 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
         {
             var asteroid = AsteroidFactory.Instance.CreateAsteroid(asteroidSetting);
             asteroid.transform.position = (Random.insideUnitCircle * 1.4f) + new Vector2(transform.position.x, transform.position.y);
-            asteroid.SelectRandomDirection();
+            asteroid.OnAsteroidCreated();
         }
 
-         Destroy(gameObject);
+        Destroy(gameObject);
+    }
+
+    private void OnAsteroidCreated()
+    {
+        AsteroidMover.SelectRandomDirection();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
