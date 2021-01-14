@@ -765,6 +765,8 @@ GameObject:
   - component: {fileID: 1284861020}
   - component: {fileID: 1284861022}
   - component: {fileID: 1284861023}
+  - component: {fileID: 1284861025}
+  - component: {fileID: 1284861024}
   m_Layer: 8
   m_Name: GameArea
   m_TagString: Untagged
@@ -843,6 +845,35 @@ MonoBehaviour:
   _gameArea: {fileID: 1284861022}
   _spawnAttempts: 5
   _spawnDelay: 5
+--- !u!114 &1284861024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284861019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769dd4b3ea54dcc43915c4135e37a38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameArea: {fileID: 1284861022}
+  _ufoVariants:
+  - {fileID: 11400000, guid: bf184e6aded5b7d46b870fa083aba69a, type: 2}
+  _spawnAttempts: 10
+  _playerShip: {fileID: 8035665158087845341}
+--- !u!114 &1284861025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284861019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465b91a88babd7548951cfc954170224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1405319815
 GameObject:
   m_ObjectHideFlags: 0

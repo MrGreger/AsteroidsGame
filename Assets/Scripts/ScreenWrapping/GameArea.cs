@@ -12,6 +12,15 @@ public class GameArea : MonoBehaviour, IBoundedObject
 
     public Bounds Bounds => _screenBoundsCollider.bounds;
 
+    public Vector2 ClampPositionToGameArea(Vector2 objectPosition)
+    {
+        var relativeAsteroidPosition = transform.InverseTransformPoint(objectPosition);
+        relativeAsteroidPosition.x = Mathf.Clamp(relativeAsteroidPosition.x, -0.49f, 0.49f);
+        relativeAsteroidPosition.y = Mathf.Clamp(relativeAsteroidPosition.y, -0.49f, 0.49f);
+        objectPosition = transform.TransformPoint(relativeAsteroidPosition);
+        return objectPosition;
+    }
+
     private void Update()
     {
         if(Camera.main.aspect == _lastCameraAspect)

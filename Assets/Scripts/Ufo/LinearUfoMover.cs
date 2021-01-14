@@ -6,21 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class LinearUfoMover : MonoBehaviour
+public class LinearUfoMover : UfoMover
 {
     [SerializeField]
-    private Rigidbody2D _rigidbody;
-    [SerializeField]
     private BasicTimer _directionDecisionTimer;
-    [SerializeField]
-    private float _speed;
     [SerializeField]
     private Vector2 _direction;
 
     private void Start()
     {
-        _direction = new Vector2(-1, 0);
-
         if (_directionDecisionTimer == null)
         {
             Debug.LogError("_directionDecisionTimer was not set");

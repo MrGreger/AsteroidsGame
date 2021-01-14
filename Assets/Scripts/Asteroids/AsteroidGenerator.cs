@@ -46,19 +46,10 @@ public class AsteroidGenerator : MonoBehaviour
             var asteroid = AsteroidFactory.Instance.CreateAsteroid(asteroidSetting);
             var asteroidPosition = (Random.insideUnitCircle * 1.4f) + new Vector2(spawnpoint.x, spawnpoint.y);
 
-            asteroidPosition = ClampPositionToGameArea(asteroidPosition);
+            asteroidPosition = _gameArea.ClampPositionToGameArea(asteroidPosition);
 
             asteroid.InitializeAsteroid(asteroidPosition);
         }
-    }
-
-    private Vector2 ClampPositionToGameArea(Vector2 asteroidPosition)
-    {
-        var relativeAsteroidPosition = _gameArea.transform.InverseTransformPoint(asteroidPosition);
-        relativeAsteroidPosition.x = Mathf.Clamp(relativeAsteroidPosition.x, -0.49f, 0.49f);
-        relativeAsteroidPosition.y = Mathf.Clamp(relativeAsteroidPosition.y, -0.49f, 0.49f);
-        asteroidPosition = _gameArea.transform.TransformPoint(relativeAsteroidPosition);
-        return asteroidPosition;
     }
 
     private IEnumerator SpawnAsteroid()
@@ -73,6 +64,7 @@ public class AsteroidGenerator : MonoBehaviour
         var attempts = 0;
 
         var testBounds = asteroid.Bounds;
+        testBounds.size *= 1.75f;
 
         while (attempts < _spawnAttempts)
         {

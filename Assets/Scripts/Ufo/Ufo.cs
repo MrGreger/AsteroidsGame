@@ -8,11 +8,18 @@ public class Ufo : SpaceShip, ICollidable, IEnemy
     [SerializeField]
     private BasicTimer _shootTimer;
     [SerializeField]
-    private int _scoreReward;
-
+    private UfoMover _ufoMover;
     private PlayerShip _playerShip;
 
-    public int ScoreReward => _scoreReward;
+    public int ScoreReward { get; set; }
+
+    public void ApplySettings(UfoSettings ufo)
+    {
+        _ufoMover.SetSpeed(ufo.Speed);
+        ScoreReward = ufo.ScoreReward;
+
+        _shootTimer = new BasicTimer(ufo.ShootCoolDown);
+    }
 
     private void Start()
     {

@@ -152,7 +152,7 @@ MonoBehaviour:
   _collider: {fileID: 2205567123365019978}
   _shootTimer:
     _time: 1.5
-  _scoreReward: 70
+  _ufoMover: {fileID: 2205567123365019980}
 --- !u!114 &2205567123365019980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1108727324509193366}
+  _speed: 0
   _directionDecisionTimer:
     _time: 5
-  _speed: 3
   _direction: {x: -1, y: 0}
 --- !u!82 &7513651010163405581
 AudioSource:
