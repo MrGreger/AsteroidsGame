@@ -44,6 +44,6 @@ public class PlayerShip : SpaceShip, ICollidable
 
     public void OnCollided(SpaceShip spaceShip)
     {
-        throw new System.NotImplementedException();
+        OnPlayerDied();
     }
 }

@@ -51,7 +51,6 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 
     public void OnHit(Asteroid asteroid)
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnCollided(Asteroid asteroid)
@@ -90,6 +89,5 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 
     public void OnCollided(SpaceShip spaceShip)
     {
-        throw new System.NotImplementedException();
     }
 }

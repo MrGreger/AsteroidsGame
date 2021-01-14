@@ -39,6 +39,11 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.TryGetComponent<SpaceShip>(out var ship) && _owner == ship)
+        {
+            return;
+        }
+
         if(collision.gameObject.TryGetComponent<ICollidable>(out var damagable))
         {
             damagable.OnCollided(this);
