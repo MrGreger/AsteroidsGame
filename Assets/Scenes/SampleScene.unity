@@ -862,6 +862,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf184e6aded5b7d46b870fa083aba69a, type: 2}
   _spawnAttempts: 10
   _playerShip: {fileID: 8035665158087845341}
+  _spawnDelay: 5
 --- !u!114 &1284861025
 MonoBehaviour:
   m_ObjectHideFlags: 0
