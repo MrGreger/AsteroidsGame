@@ -11,7 +11,7 @@ enum ScreenEdge
     Bottom
 }
 
-public class UfoGenerator : MonoBehaviour
+public class UfoGenerator : MonoBehaviour, IGenerator
 {
     [SerializeField]
     private GameArea _gameArea;
@@ -24,9 +24,26 @@ public class UfoGenerator : MonoBehaviour
     [SerializeField]
     private float _spawnDelay = 5f;
 
+    private Coroutine _generatorCoroutine;
+
     public void Start()
     {
-        InvokeRepeating(nameof(SpawnUfo), Random.Range(5, 10f), _spawnDelay);
+        StartGenerating();
+    }
+
+    private IEnumerator Generate()
+    {
+        yield return new WaitForSeconds(Random.Range(5, 10f));
+
+        var waitDelay = new WaitForSeconds(_spawnDelay);
+
+        SpawnUfo();
+
+        while (true)
+        {
+            yield return waitDelay;
+            SpawnUfo();
+        }
     }
 
     private IEnumerator PlaceUfo(Ufo ufo)
@@ -99,5 +116,21 @@ public class UfoGenerator : MonoBehaviour
         var ufo = UfoFactory.Instance.CreateUfo(_ufoVariants[Random.Range(0, _ufoVariants.Count)]);
 
         StartCoroutine(PlaceUfo(ufo));
+    }
+
+    public void StartGenerating()
+    {
+        if (_generatorCoroutine == null)
+        {
+            _generatorCoroutine = StartCoroutine(Generate());
+        }
+    }
+
+    public void StopGenerating()
+    {
+        if (_generatorCoroutine != null)
+        {
+            StopCoroutine(_generatorCoroutine);
+        }
     }
 }

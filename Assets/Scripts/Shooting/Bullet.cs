@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IRemovable
 {
     private SpaceShip _owner;
     public SpaceShip GunOwner => _owner;
@@ -49,5 +49,10 @@ public class Bullet : MonoBehaviour
             damagable.OnCollided(this);
             Destroy(gameObject);
         }
+    }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
     }
 }

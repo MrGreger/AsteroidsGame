@@ -4,7 +4,7 @@ using System.Linq;
 using UniRx;
 using UnityEngine;
 
-public class AsteroidGenerator : MonoBehaviour
+public class AsteroidGenerator : MonoBehaviour, IGenerator
 {
     [SerializeField]
     private PlayerShip _playerShip;
@@ -19,14 +19,28 @@ public class AsteroidGenerator : MonoBehaviour
     [SerializeField]
     private float _spawnDelay;
 
+    private Coroutine _generatorCoroutine;
+
     public void Start()
     {
-        InvokeRepeating(nameof(GenerateRandomAsteroid), 0.2f, _spawnDelay);
+        StartGenerating();
 
         MessageBroker.Default.Receive<OnAsteroidBreakEvent>()
                              .Subscribe(x => GenerateAsteroids(x.BreakPosition, x.Fragments))
                              .AddTo(this);
-    } 
+    }
+
+    private IEnumerator Generate()
+    {
+        var waitDelay = new WaitForSeconds(_spawnDelay);
+
+
+        while (true)
+        {
+            yield return waitDelay;
+            SpawnAsteroid();
+        }
+    }
 
     public void GenerateRandomAsteroid()
     {
@@ -90,6 +104,22 @@ public class AsteroidGenerator : MonoBehaviour
         {
             Debug.LogError("Failed to spawn asteroid.");
             Destroy(asteroid);
+        }
+    }
+
+    public void StartGenerating()
+    {
+        if (_generatorCoroutine == null)
+        {
+            _generatorCoroutine = StartCoroutine(Generate());
+        }
+    }
+
+    public void StopGenerating()
+    {
+        if (_generatorCoroutine != null)
+        {
+            StopCoroutine(_generatorCoroutine);
         }
     }
 }

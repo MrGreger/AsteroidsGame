@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviour, IRemovable
 {
     public void Place(Vector3 positon)
     {
@@ -10,6 +10,11 @@ public class Explosion : MonoBehaviour
     }
 
     public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Remove()
     {
         Destroy(gameObject);
     }

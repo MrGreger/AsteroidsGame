@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class Ufo : SpaceShip, ICollidable, IEnemy
+public class Ufo : SpaceShip, ICollidable, IEnemy, IRemovable
 {
     [SerializeField]
     private BasicTimer _shootTimer;
@@ -89,5 +89,10 @@ public class Ufo : SpaceShip, ICollidable, IEnemy
         {
             ship.OnCollided(this);
         }
+    }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
     }
 }

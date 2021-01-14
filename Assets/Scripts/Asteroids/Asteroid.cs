@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
+public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy, IRemovable
 {
     [SerializeField]
     private Collider2D _collider;
@@ -90,5 +90,10 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
 
     public void OnCollided(SpaceShip spaceShip)
     {
+    }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
     }
 }
