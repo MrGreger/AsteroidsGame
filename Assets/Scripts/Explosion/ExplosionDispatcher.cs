@@ -10,12 +10,10 @@ public class ExplosionDispatcher : MonoBehaviour
 
     private void Start()
     {
-        MessageBroker.Default.Receive<OnEnemyDieEvent>()
-                             .Where(x => x.Enemy is MonoBehaviour)
-                             .Select(x => x.Enemy as MonoBehaviour)
+        MessageBroker.Default.Receive<OnExplodeEvent>()
                              .Subscribe(x =>
                              {
-                                 CreateExplosion(x.transform.position);
+                                 CreateExplosion(x.ExplosionPosition);
                              }).AddTo(this);
     }
 
