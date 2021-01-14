@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,11 +32,61 @@ public class PlayerMovement : MonoBehaviour
     private bool _acclerating;
     private Vector2 _accelerationDirection;
 
+    private bool _readInput = true;
+
+    private void Start()
+    {
+        _playerInput.PlayerShip.Move.performed += ctx => StartAccelerating();
+        _playerInput.PlayerShip.Move.canceled += ctx => StopAccelerating();
+
+        MessageBroker.Default.Receive<OnGameOverEvent>()
+                             .Subscribe((x) =>
+                             {
+                                 _readInput = false;
+                                 StopMoving();
+                             })
+                             .AddTo(this);
+
+        MessageBroker.Default.Receive<OnGamePausedEvent>()
+                             .Subscribe((x) =>
+                             {
+                                 _readInput = false;
+                             })
+                             .AddTo(this);
+
+        MessageBroker.Default.Receive<OnGameStartedEvent>()
+                             .Subscribe((x) =>
+                             {
+                                 _readInput = true;
+                             })
+                             .AddTo(this);
+
+        MessageBroker.Default.Receive<OnGameResumedEvent>()
+                             .Subscribe((x) =>
+                             {
+                                 _readInput = true;
+                             })
+                             .AddTo(this);
+    }
+
+
     private void Update()
     {
+        if (!_readInput)
+        {
+            return;
+        }
+
         CalculateAcceleration();
 
         UpdateRotation();
+    }
+
+    private void StopMoving()
+    {
+        _currentAcceleration = 0;
+        _accelerationDirection = Vector2.zero;
+        _rigidbody.velocity = Vector2.zero;
     }
 
     private void UpdateRotation()
@@ -72,12 +123,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, _accelerationDirection * _currentAcceleration, Time.deltaTime * _slowDownSpeed);
-    }
-
-    private void Start()
-    {
-        _playerInput.PlayerShip.Move.performed += ctx => StartAccelerating();
-        _playerInput.PlayerShip.Move.canceled += ctx => StopAccelerating();
     }
 
     private void OnDisable()

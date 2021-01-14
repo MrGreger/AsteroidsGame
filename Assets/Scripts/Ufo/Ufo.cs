@@ -25,11 +25,6 @@ public class Ufo : SpaceShip, ICollidable, IEnemy, IRemovable
     {
         _playerShip = FindObjectOfType<PlayerShip>();
 
-        if(_playerShip == null)
-        {
-            Debug.LogError("Player was not found.");
-        }
-
         if (_shootTimer == null)
         {
             Debug.LogError("_shootTimer was not set.");

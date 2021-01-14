@@ -131,6 +131,7 @@ public class UfoGenerator : MonoBehaviour, IGenerator
         if (_generatorCoroutine != null)
         {
             StopCoroutine(_generatorCoroutine);
+            _generatorCoroutine = null;
         }
     }
 }

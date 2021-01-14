@@ -237,6 +237,7 @@ MonoBehaviour:
   PlayerDied:
     m_PersistentCalls:
       m_Calls: []
+  _playerMovement: {fileID: 8035665158272178449}
 --- !u!114 &1100639796663132937
 MonoBehaviour:
   m_ObjectHideFlags: 0

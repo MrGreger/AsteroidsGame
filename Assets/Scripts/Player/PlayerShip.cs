@@ -4,6 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerShip : SpaceShip, ICollidable
 {
     public UnityEvent PlayerDied;

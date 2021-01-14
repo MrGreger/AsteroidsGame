@@ -32,13 +32,16 @@ public class AsteroidGenerator : MonoBehaviour, IGenerator
 
     private IEnumerator Generate()
     {
+        yield return new WaitForSeconds(0.2f);
+
         var waitDelay = new WaitForSeconds(_spawnDelay);
 
+        GenerateRandomAsteroid();
 
         while (true)
         {
             yield return waitDelay;
-            SpawnAsteroid();
+            GenerateRandomAsteroid();
         }
     }
 
@@ -120,6 +123,7 @@ public class AsteroidGenerator : MonoBehaviour, IGenerator
         if (_generatorCoroutine != null)
         {
             StopCoroutine(_generatorCoroutine);
+            _generatorCoroutine = null;
         }
     }
 }
