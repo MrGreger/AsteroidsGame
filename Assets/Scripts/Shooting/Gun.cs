@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
+    public UnityEvent Shooted;
+
     [SerializeField]
     private GameObject _bulletPrefab;
     [SerializeReference]
@@ -21,5 +24,7 @@ public class Gun : MonoBehaviour
     {
         var bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
         bullet.SetOwner(_shooter);
+
+        Shooted?.Invoke();
     }
 }

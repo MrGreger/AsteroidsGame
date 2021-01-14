@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
@@ -39,6 +40,8 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
         }
 
         _healthPoints--;
+
+        MessageBroker.Default.Publish(new EnemyHitEvent());
 
         if (_healthPoints <= 0)
         {

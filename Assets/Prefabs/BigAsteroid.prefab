@@ -130,6 +130,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14e8e95fee5af541b41b140c1aba28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 210672a5364da6a47a956a182a7c440c,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _collider: {fileID: 4092444638036723338}
   _afterDeathAsteroids: []
   _asteroidMover: {fileID: 5971110267876769558}
