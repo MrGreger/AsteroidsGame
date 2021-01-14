@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bee10de3550aa740ac71c4f46df8d21, type: 3}
   m_Name: FastDiagonalUfo
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 2.4
   ShootCoolDown: 0.9
   ScoreReward: 150
   Prefab: {fileID: 5059506467154718647, guid: ae61420f28837174cb721b1676c160f5, type: 3}
