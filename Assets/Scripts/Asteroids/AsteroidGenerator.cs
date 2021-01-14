@@ -16,14 +16,17 @@ public class AsteroidGenerator : MonoBehaviour
     [SerializeField]
     private int _spawnAttempts = 5;
 
+    [SerializeField]
+    private float _spawnDelay;
+
     public void Start()
     {
-        InvokeRepeating(nameof(GenerateRandomAsteroid), 0.2f, 10000);
+        InvokeRepeating(nameof(GenerateRandomAsteroid), 0.2f, _spawnDelay);
 
         MessageBroker.Default.Receive<OnAsteroidBreakEvent>()
                              .Subscribe(x => GenerateAsteroids(x.BreakPosition, x.Fragments))
                              .AddTo(this);
-    }
+    } 
 
     public void GenerateRandomAsteroid()
     {
