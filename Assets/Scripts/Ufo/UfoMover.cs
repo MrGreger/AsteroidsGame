@@ -22,5 +22,10 @@ public class UfoMover : MonoBehaviour
 
         _speed = speed;
     }
+
+    protected virtual void Move()
+    {
+
+    }
 }
 

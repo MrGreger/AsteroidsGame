@@ -41,7 +41,7 @@ public class LinearUfoMover : UfoMover
         Move();
     }
 
-    private void Move()
+    protected override void Move()
     {
         _rigidbody.velocity = _speed * _direction;
     }

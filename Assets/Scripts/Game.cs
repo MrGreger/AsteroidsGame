@@ -59,9 +59,6 @@ public class Game : MonoBehaviour
 
         Time.timeScale = 1;
 
-        _player.gameObject.SetActive(true);
-        _player.transform.position = Vector3.zero;
-
         RemoveAllRemovables();
         RestartGenerators();
 

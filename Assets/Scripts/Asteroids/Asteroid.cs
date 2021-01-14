@@ -41,7 +41,7 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy, IRem
 
         _healthPoints--;
 
-        MessageBroker.Default.Publish(new EnemyHitEvent());
+        MessageBroker.Default.Publish(new OnEnemyHitEvent());
 
         if (_healthPoints <= 0)
         {

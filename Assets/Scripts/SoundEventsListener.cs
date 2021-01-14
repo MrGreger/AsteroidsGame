@@ -15,7 +15,7 @@ public class SoundEventsListener : MonoBehaviour
                              .Subscribe(x => OnExplode?.Invoke())
                              .AddTo(this);
 
-        MessageBroker.Default.Receive<EnemyHitEvent>()
+        MessageBroker.Default.Receive<OnEnemyHitEvent>()
                      .Subscribe(x => EnemyHit?.Invoke())
                      .AddTo(this);
     }

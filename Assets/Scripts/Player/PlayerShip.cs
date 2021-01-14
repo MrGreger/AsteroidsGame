@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerShip : SpaceShip, ICollidable
+public class PlayerShip : SpaceShip, ICollidable, IRemovable
 {
     public UnityEvent PlayerDied;
     private PlayerActions _playerInput => PlayerInputSingleton.Instance?.PlayerInputController;
@@ -47,5 +47,10 @@ public class PlayerShip : SpaceShip, ICollidable
     public void OnCollided(SpaceShip spaceShip)
     {
         OnPlayerDied();
+    }
+
+    public void Remove()
+    {
+        transform.position = Vector3.zero;
     }
 }
