@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 public class SoundEventsListener : MonoBehaviour
 {
-    public UnityEvent EnemyDied;
+    public UnityEvent OnExplode;
     public UnityEvent EnemyHit;
 
     private void Start()
     {
-        MessageBroker.Default.Receive<OnEnemyDieEvent>()
-                             .Subscribe(x => EnemyDied?.Invoke())
+        MessageBroker.Default.Receive<OnExplodeEvent>()
+                             .Subscribe(x => OnExplode?.Invoke())
                              .AddTo(this);
 
         MessageBroker.Default.Receive<EnemyHitEvent>()

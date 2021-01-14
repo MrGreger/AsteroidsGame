@@ -61,6 +61,7 @@ public class Asteroid : MonoBehaviour, ICollidable, IBoundedObject, IEnemy
     private void OnDead()
     {
         MessageBroker.Default.Publish(new OnEnemyDieEvent(this));
+        MessageBroker.Default.Publish(new OnExplodeEvent(transform.position));
 
         if (_afterDeathAsteroids == null || !_afterDeathAsteroids.Any())
         {

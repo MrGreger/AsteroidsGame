@@ -34,6 +34,7 @@ public class PlayerShip : SpaceShip, ICollidable
 
     public void OnPlayerDied()
     {
+        MessageBroker.Default.Publish(new OnExplodeEvent(transform.position));
         MessageBroker.Default.Publish(new OnPlayerDiedEvent());
     }
 

@@ -77,6 +77,7 @@ public class Ufo : SpaceShip, ICollidable, IEnemy
 
     private void OnDead()
     {
+        MessageBroker.Default.Publish(new OnExplodeEvent(transform.position));
         MessageBroker.Default.Publish(new OnEnemyDieEvent(this));
 
         Destroy(gameObject);
