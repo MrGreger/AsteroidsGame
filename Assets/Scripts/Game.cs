@@ -58,6 +58,7 @@ public class Game : MonoBehaviour
         _gameState = GameState.playing;
 
         Time.timeScale = 1;
+
         _player.gameObject.SetActive(true);
 
         RemoveAllRemovables();
