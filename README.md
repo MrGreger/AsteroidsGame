@@ -1,4 +1,4 @@
-# AsteroidsGame
+# AsteroidsGame (unity 2020.1.8f1)
 
 Основная часть игры построена на IGenerator и IRemovable:
 - конкретные реализации IGenerator создают с помощью фабрик астероиды и НЛО и с помощью GameArea помещают их на игровое пространство
